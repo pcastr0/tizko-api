@@ -2,20 +2,29 @@ const { Seeder } = require('mongo-seeding');
 const path = require('path');
 const mongoose = require('mongoose');
 const colors = require('colors');
-const dotenv = require('dotenv-safe');
+const dotenv = require('dotenv-safe').config();
 
-dotenv.config({ path: path.resolve(`./.env.${process.env.NODE_ENV}`) });
+// dotenv.config({ path: path.resolve(`./.env.${process.env.NODE_ENV}`) });
+
+const {
+  MONGO_USERNAME,
+  MONGO_PASSWORD,
+  MONGO_HOSTNAME,
+  DB_NAME
+} = process.env;
 
 const User = require('../models/User');
 const Product = require('../models/Product');
 const Store = require('../models/Store');
 
+const url = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}/${DB_NAME}?retryWrites=true&w=majority`;
+
 const config = {
-  database: process.env.MONGODB_URI,
+  database: url,
   dropDatabase: false,
 };
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(url, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,

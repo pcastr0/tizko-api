@@ -252,7 +252,7 @@ const hash = (password) => {
 const generateJwtToken = (user) => {
   // create a jwt token containing the user account id that expires in 15 mins
   return jwt.sign({ sub: user.id, id: user.id }, process.env.JWT_SECRET, {
-    expiresIn: '30m',
+    expiresIn: process.env.JWT_EXPIRATION,
   });
 }
 

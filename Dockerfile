@@ -1,12 +1,37 @@
-FROM node:10.22.1
+# FROM node:12.20.0
 
-# define working directory in the Container
-WORKDIR /usr/src/tizko-api
+# # Create app directory
+# WORKDIR /usr/src/app
 
-# copy everything from Local to Container
-COPY ./ ./
+# # Install app dependencies
+# # A wildcard is used to ensure both package.json AND package-lock.json are copied
+# # where available (npm@5+)
+# COPY package*.json ./
 
-# execute command
+# RUN npm install
+# # If you are building your code for production
+# # RUN npm ci --only=production
+
+# # Bundle app source
+# COPY . .
+
+# EXPOSE 5000
+# CMD [ "node", "server.js" ]
+
+FROM node:10-alpine
+
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+
+WORKDIR /home/node/app
+
+COPY package*.json ./
+
+USER node
+
 RUN npm install
 
-CMD ["/bin/bash"]
+COPY --chown=node:node . .
+
+EXPOSE 8080
+
+CMD [ "node", "server.js" ]

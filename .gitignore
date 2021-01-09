@@ -8,6 +8,7 @@ config/**
 .env
 .env.development
 .env.test
+.env.production
 
 # macOS
 .DS_Store

@@ -4,7 +4,7 @@
   "description": "A RESTful API for Tizko Online Groceries",
   "main": "server.js",
   "scripts": {
-    "start": "node ./server.js",
+    "start": "cross-env NODE_ENV=production node ./server.js",
     "dev": "cross-env NODE_ENV=development nodemon ./server.js",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
     "test:watch": "cross-env NODE_ENV=development jest --watch --detectOpenHandles",

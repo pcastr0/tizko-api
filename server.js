@@ -2,7 +2,7 @@ const app = require('./app');
 
 // const port =
 //   process.env.NODE_ENV === 'production' ? process.env.PORT || 80 : 5000;
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`.yellow.bold);
