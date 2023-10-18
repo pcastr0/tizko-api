@@ -1,2 +1,2 @@
-# A RESTful API for Tizko Online Groceries
+# Tizko REST API
 
